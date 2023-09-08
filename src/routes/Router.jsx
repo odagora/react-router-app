@@ -5,6 +5,7 @@ import { ProfilePage } from "../components/ProfilePage";
 import { BlogPost } from "../components/BlogPost";
 import { LoginPage } from "../components/LoginPage";
 import { LogoutPage } from "../components/LogoutPage";
+import { AuthRoute } from "../context/auth";
 
 export default function Router() {
   let element = useRoutes([
@@ -24,7 +25,11 @@ export default function Router() {
     },
     {
       path: "/profile",
-      element: <ProfilePage />,
+      element: (
+        <AuthRoute>
+          <ProfilePage />
+        </AuthRoute>
+      ),
     },
     {
       path: "/login",
@@ -32,7 +37,11 @@ export default function Router() {
     },
     {
       path: "/logout",
-      element: <LogoutPage />,
+      element: (
+        <AuthRoute>
+          <LogoutPage />
+        </AuthRoute>
+      ),
     },
   ]);
 
