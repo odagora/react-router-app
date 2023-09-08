@@ -13,10 +13,12 @@ export default function Router() {
     {
       path: "/blog",
       element: <BlogPage />,
-    },
-    {
-      path: "/blog/:slug",
-      element: <BlogPost />,
+      children: [
+        {
+          path: ":slug",
+          element: <BlogPost />,
+        },
+      ],
     },
     {
       path: "/profile",
