@@ -3,6 +3,8 @@ import { HomePage } from "../components/HomePage";
 import { BlogPage } from "../components/BlogPage";
 import { ProfilePage } from "../components/ProfilePage";
 import { BlogPost } from "../components/BlogPost";
+import { LoginPage } from "../components/LoginPage";
+import { LogoutPage } from "../components/LogoutPage";
 
 export default function Router() {
   let element = useRoutes([
@@ -23,6 +25,14 @@ export default function Router() {
     {
       path: "/profile",
       element: <ProfilePage />,
+    },
+    {
+      path: "/login",
+      element: <LoginPage />,
+    },
+    {
+      path: "/logout",
+      element: <LogoutPage />,
     },
   ]);
 

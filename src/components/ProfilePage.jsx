@@ -1,7 +1,14 @@
 import React from "react";
+import { useAuth } from "../hooks/useAuth";
 
-function ProfilePage() {
-  return <h1>Profile Page</h1>;
-}
+export const ProfilePage = () => {
+  const auth = useAuth();
 
-export { ProfilePage };
+  return (
+    <>
+      <h1>Perfil</h1>
+
+      <p>Welcome, {auth.user.username}</p>
+    </>
+  );
+};
