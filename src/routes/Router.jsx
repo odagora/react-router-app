@@ -6,6 +6,7 @@ import { BlogPost } from "../components/BlogPost";
 import { LoginPage } from "../components/LoginPage";
 import { LogoutPage } from "../components/LogoutPage";
 import { AuthRoute } from "../context/auth";
+import { PostForm } from "../components/PostForm";
 
 export default function Router() {
   let element = useRoutes([
@@ -19,7 +20,15 @@ export default function Router() {
       children: [
         {
           path: ":slug",
-          element: <BlogPost />,
+          element: <BlogPost />
+        },
+        {
+          path: "create",
+          element: <PostForm />
+        },
+        {
+          path: ":slug/edit",
+          element: <PostForm/>
         },
       ],
     },

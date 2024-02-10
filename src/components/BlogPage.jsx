@@ -1,43 +1,24 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
-
-export const blogdata = [];
-
-blogdata.push({
-  title: "¿Que es React?",
-  slug: "que-es-react",
-  content: "React es el mejor Framework de JavaScript, que lindo React",
-  author: "odagora",
-});
-
-blogdata.push({
-  title: "¿Que es Vue?",
-  slug: "que-es-vue",
-  content: "Vue es el mejor Framework de JavaScript, que lindo Vue",
-  author: "daniel",
-});
-
-blogdata.push({
-  title: "¿Que es Angular?",
-  slug: "que-es-angular",
-  content: "Angular esta bien, que lindo React XD",
-  author: "daniel-c",
-});
-
-blogdata.push({
-  title: "¿Que es Svelte?",
-  slug: "que-es-svelte",
-  content: "Svelte es el mejor Framework de JavaScript, que lindo Svelte",
-  author: "daniel-c",
-});
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { useData } from "../hooks/useData";
+import { useAuth } from '../hooks/useAuth';
 
 export const BlogPage = () => {
+  const { user } = useAuth();
+  const { data } = useData();
+  const navigate = useNavigate();
+
+  const createPost = () => {
+    navigate("/blog/create");
+  }
+
   return (
     <>
       <h1>Blog</h1>
+      {user && <button onClick={createPost}>Crear un nuevo post</button>}
       <Outlet />
       <ul>
-        {blogdata.map((post) => (
+        {data.map((post) => (
           <BlogLink key={post.title} post={post} />
         ))}
       </ul>
