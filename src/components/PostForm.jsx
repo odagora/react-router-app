@@ -12,7 +12,7 @@ export const PostForm = () => {
     title: '',
     slug: '',
     content: '',
-    author: user.username
+    author: user?.username || ''
   }
 
   const [ formData, setFormData ] = useState(initialFormData);

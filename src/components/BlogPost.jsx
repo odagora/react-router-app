@@ -10,7 +10,7 @@ export const BlogPost = () => {
   const blogpost = data.find((post) => post.slug === slug);
 
   const canDelete =
-    auth.user?.isAdmin || blogpost.author === auth.user?.username;
+    auth.user?.isAdmin || blogpost?.author === auth.user?.username;
 
   const returnBlog = () => {
     navigate("/blog", { replace: true });
@@ -26,6 +26,7 @@ export const BlogPost = () => {
   }
 
   return (
+    blogpost && (
     <>
       <h2>{blogpost.title}</h2>
       <button onClick={returnBlog}>Volver al blog</button>
@@ -36,5 +37,5 @@ export const BlogPost = () => {
 
       {auth.user?.isEditor && <button onClick={() => handleEdit(blogpost.slug)}>Editar blogpost</button>}
     </>
-  );
+  ));
 };

@@ -24,11 +24,19 @@ export default function Router() {
         },
         {
           path: "create",
-          element: <PostForm />
+          element: (
+            <AuthRoute>
+              <PostForm />
+            </AuthRoute>
+          )
         },
         {
           path: ":slug/edit",
-          element: <PostForm/>
+          element: (
+            <AuthRoute>
+              <PostForm />
+            </AuthRoute>
+          )
         },
       ],
     },
@@ -52,6 +60,10 @@ export default function Router() {
         </AuthRoute>
       ),
     },
+    {
+      path: '*',
+      element: <p>Route not found</p>
+    }
   ]);
 
   return element;
