@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 const users = [
@@ -29,7 +29,10 @@ const AuthContext = createContext();
 
 function AuthProvider({ children }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [user, setUser] = useState(null);
+
+  const from = location.state?.from?.pathname || "/";
 
   const login = ({ username }) => {
     const adminUsers = users.filter((user) => user.role === "admin");
@@ -39,7 +42,7 @@ function AuthProvider({ children }) {
     const isEditor = editorUsers.find((user) => user.name === username);
 
     setUser({ username, isAdmin, isEditor });
-    navigate("/profile");
+    navigate(from, { replace: true });
   };
 
   const logout = () => {
@@ -53,9 +56,10 @@ function AuthProvider({ children }) {
 
 function AuthRoute({ children }) {
   const auth = useAuth();
+  const location = useLocation();
 
   if (!auth.user) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
   return children;
 }
