@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { useState } from "react"
 
 const initialData = [
   {
@@ -38,14 +38,8 @@ const initialData = [
   }
 ];
 
-const DataContext = createContext();
-
-function DataProvider({ children }) {
-  const [data, setData] = useState(null);
-
-  const fetchInitialData = () => {
-    setData(initialData);
-  }
+export function useData() {
+  const [data, setData] = useState(initialData);
 
   const createPost = (post) => {
     setData([...data, post]);
@@ -65,13 +59,10 @@ function DataProvider({ children }) {
     setData(updatedData);
   }
 
-  useEffect(() => {
-    fetchInitialData();
-  }, [])
-
-  const blogData = { data, createPost, editPost, deletePost }
-
-  return <DataContext.Provider value={blogData}>{children}</DataContext.Provider>
+  return {
+    data,
+    createPost,
+    editPost,
+    deletePost
+  }
 }
-
-export { DataContext, DataProvider }

@@ -1,13 +1,12 @@
 import { React, useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useOutletContext  } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth';
-import { useData } from "../hooks/useData";
 
 export const PostForm = () => {
   const { user } = useAuth();
   const { slug } = useParams();
-  const { data, createPost, editPost } = useData();
   const navigate = useNavigate();
+  const { data, createPost, editPost } = useOutletContext();
 
   const initialFormData = slug ? postToEdit(slug) : {
     title: '',

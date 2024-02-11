@@ -1,13 +1,12 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import { useData } from "../hooks/useData";
+import { useNavigate, useParams, useOutletContext } from "react-router-dom";
 
 export const BlogPost = () => {
-  const navigate = useNavigate();
-  const { slug } = useParams();
   const auth = useAuth();
-  const { data, deletePost } = useData();
+  const { slug } = useParams();
+  const navigate = useNavigate();
+  const { data, deletePost } = useOutletContext();
   const blogpost = data.find((post) => post.slug === slug);
 
   const canDelete =
