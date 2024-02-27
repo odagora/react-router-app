@@ -2,26 +2,30 @@ import { createContext, useState } from "react";
 import { Navigate, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
-const users = [
+export const users = [
   {
     id: 1,
     name: "daniel-c",
     role: "admin",
+    email: "daniel-c@example.com"
   },
   {
     id: 2,
     name: "odagora",
     role: "editor",
+    email: "odagora@example.com"
   },
   {
     id: 3,
     name: "daniel",
     role: "user",
+    email: "daniel@example.com"
   },
   {
     id: 4,
     name: "odagora-c",
     role: "editor",
+    email: "odagora-c@example.com"
   },
 ];
 

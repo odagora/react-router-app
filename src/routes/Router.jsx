@@ -41,7 +41,7 @@ export default function Router() {
       ],
     },
     {
-      path: "/profile",
+      path: "/profile/:user",
       element: (
         <AuthRoute>
           <ProfilePage />

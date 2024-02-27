@@ -7,31 +7,37 @@ routes.push({
   to: "/",
   text: "Home",
   private: false,
+  dynamic: false
 });
 routes.push({
   to: "/blog",
   text: "Blog",
   private: false,
+  dynamic: false
 });
 routes.push({
   to: "/profile",
   text: "Profile",
   private: true,
+  dynamic: true,
 });
 routes.push({
   to: "/login",
   text: "Login",
   private: false,
   publicOnly: true,
+  dynamic: false
 });
 routes.push({
   to: "/logout",
   text: "Logout",
   private: true,
+  dynamic: false
 });
 
 export const Menu = () => {
   const auth = useAuth();
+
   return (
     <nav>
       <ul>
@@ -46,7 +52,7 @@ export const Menu = () => {
                 style={({ isActive }) => ({
                   color: isActive ? "yellow" : "white",
                 })}
-                to={route.to}
+                to={route.dynamic && auth.user ? `${route.to}/${auth.user.username}`: route.to}
               >
                 {route.text}
               </NavLink>
